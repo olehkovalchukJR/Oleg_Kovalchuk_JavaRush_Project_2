@@ -6,9 +6,29 @@ package ru.javarush.oleg_kovalchuk.project2.animals;
 
 public class Predator extends Animal implements Fieldable{
 
-    public Predator(String name, String icon, int amount, double weight,
+    public Predator(String name, String icon, double weight,
                     int maxAnimals, int travelSpeed, double maxFullness) {
-        super(name, icon, amount, weight, maxAnimals, travelSpeed, maxFullness);
+        super(name, icon, weight, maxAnimals, travelSpeed, maxFullness);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public int getAmount() {
+        return super.getAmount();
+    }
+
+    @Override
+    public void setAmount(int amount) {
+        super.setAmount(amount);
+    }
+
+    @Override
+    public int getTravelSpeed() {
+        return super.getTravelSpeed();
     }
 
     @Override

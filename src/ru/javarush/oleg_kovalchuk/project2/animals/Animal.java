@@ -9,16 +9,18 @@ public abstract class Animal {
     private int travelSpeed;
     private double maxFullness;
 
-    public Animal(String name, String icon, int amount, double weight,
+
+    public Animal(String name, String icon, double weight,
                   int maxAnimals, int travelSpeed, double maxFullness) {
         this.name = name;
         this.icon = icon;
-        this.amount = amount;
         this.weight = weight;
         this.maxAnimals = maxAnimals;
         this.travelSpeed = travelSpeed;
         this.maxFullness = maxFullness;
+        this.amount = maxAnimals / 2;
     }
+
 
     public String getName() {
         return name;
@@ -37,8 +39,13 @@ public abstract class Animal {
         this.amount = amount;
     }
 
+    public int getTravelSpeed() {
+        return travelSpeed;
+    }
+
     @Override
     public String toString() {
         return getIcon();
     }
+
 }

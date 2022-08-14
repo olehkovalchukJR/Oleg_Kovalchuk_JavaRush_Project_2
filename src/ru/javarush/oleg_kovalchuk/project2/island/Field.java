@@ -1,16 +1,20 @@
 package ru.javarush.oleg_kovalchuk.project2.island;
 
+import ru.javarush.oleg_kovalchuk.project2.animals.Animal;
 import ru.javarush.oleg_kovalchuk.project2.animals.Fieldable;
+import ru.javarush.oleg_kovalchuk.project2.main.Statistic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Field {
     private int sizeX = 10;
     private int sizeY = 10;
 
-    private List<Fieldable>[][] field;
-
+    private List<? super Animal>[][] field;
+    Statistic statistic = new Statistic();
 
     public Field() {
         field = new List[sizeX][sizeY];
@@ -28,31 +32,38 @@ public class Field {
     public int getArrayListSize(int x, int y){
         return field[x][y].size();
     }
-    public void setAnimalOnField(int x, int y, Fieldable animal){
-
+    public void setAnimalOnField(int x, int y, Animal animal){
         field[x][y].add(animal);
     }
 
-    public Fieldable getAnimalOnField(int x,int y, int listIndex){
-        return field[x][y].get(listIndex);
-    }
+//    public Fieldable getAnimalOnField(int x,int y, int listIndex){
+//        return field[x][y].get(listIndex);
+//    }
 
     public void deleteAnimalOnField(int x, int y, int listIndex){
         field[x][y].remove(listIndex);
     }
 
     public void printField(){
+
         System.out.println();
-        for (int i = 0; i < sizeX; i++) {
-            for (int j = 0; j < sizeY; j++) {
-                System.out.print(field[i][j] + " ");
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field[i].length; j++) {
+                if (field[i][j].size() == 0){
+                    System.out.print("[  ] ");
+                } else if(field[i][j].size() == 1){
+                    System.out.print("[" + field[i][j].get(0) + "] ");
+                } else{
+                    int index = new Random().nextInt(field[i][j].size() - 1) + 1;
+                    System.out.print("[" + field[i][j].get(index) + "] ");
+                }
             }
             System.out.println();
         }
         System.out.println();
     }
 
-    public void move(Fieldable animal, String direction , int distance){
+    public void move(Animal animal, String direction , int distance){
         int vertical = 0;
         int horizontal = 0;
         if (direction.equals("UP")){
@@ -70,14 +81,24 @@ public class Field {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
                 if (field[i][j].contains(animal)){
-                    setAnimalOnField(i + vertical,j + horizontal,animal);
-                    field[i][j].remove(animal);
-                    return;
+                    if (i + vertical >= field.length || i + vertical < 0){
+                        setAnimalOnField(i - vertical, j + horizontal, animal);
+                        field[i][j].remove(animal);
+                        return;
+                    } else if (j + horizontal >= field[i].length || j + horizontal < 0){
+                        setAnimalOnField(i + vertical, j - horizontal, animal);
+                        field[i][j].remove(animal);
+                        return;
+                    } else {
+                        setAnimalOnField(i + vertical,j + horizontal,animal);
+                        field[i][j].remove(animal);
+                        return;
+                    }
                 }
             }
         }
     }
-
+    
     private void fillArrayWithNewLists(){
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
