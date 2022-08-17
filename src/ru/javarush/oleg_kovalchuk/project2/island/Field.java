@@ -1,24 +1,26 @@
 package ru.javarush.oleg_kovalchuk.project2.island;
 
-import ru.javarush.oleg_kovalchuk.project2.animals.Animal;
-import ru.javarush.oleg_kovalchuk.project2.animals.Fieldable;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.Animal;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.BasicItem;
 import ru.javarush.oleg_kovalchuk.project2.main.Statistic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class Field {
+public class Field implements Movable{
     private int sizeX = 10;
     private int sizeY = 10;
 
-    private List<? super Animal>[][] field;
-    Statistic statistic = new Statistic();
+    private List<BasicItem>[][] field;
 
     public Field() {
         field = new List[sizeX][sizeY];
         fillArrayWithNewLists();
+    }
+
+    public List<BasicItem>[][] getField() {
+        return field;
     }
 
     public int getSizeX() {
@@ -32,7 +34,7 @@ public class Field {
     public int getArrayListSize(int x, int y){
         return field[x][y].size();
     }
-    public void setAnimalOnField(int x, int y, Animal animal){
+    public void setAnimalOnField(int x, int y, BasicItem animal){
         field[x][y].add(animal);
     }
 
@@ -45,7 +47,6 @@ public class Field {
     }
 
     public void printField(){
-
         System.out.println();
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
@@ -63,6 +64,7 @@ public class Field {
         System.out.println();
     }
 
+    @Override
     public void move(Animal animal, String direction , int distance){
         int vertical = 0;
         int horizontal = 0;
@@ -98,7 +100,8 @@ public class Field {
             }
         }
     }
-    
+
+
     private void fillArrayWithNewLists(){
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {

@@ -13,7 +13,9 @@ public class Main {
 
         while (!exit){
             island.moveAnimal();
+            island.eatHerbs();
             island.printIsland();
+            island.printStatistic();
 
             int stop = scanner.nextInt();
             if (stop == 0){
