@@ -4,7 +4,8 @@ package ru.javarush.oleg_kovalchuk.project2.game_characters;
         Хищник
  */
 
-import ru.javarush.oleg_kovalchuk.project2.island.Eateble;
+
+import java.util.List;
 
 public class CarnivoreAnimal extends Animal{
 
@@ -14,7 +15,7 @@ public class CarnivoreAnimal extends Animal{
     }
 
     @Override
-    public void eat(int x, int y, BasicItem animal) {
+    public void eat(List<BasicItem>[][] field, int i, int j, BasicItem herb) {
 
     }
 }

@@ -6,6 +6,8 @@ package ru.javarush.oleg_kovalchuk.project2.game_characters;
 
 import ru.javarush.oleg_kovalchuk.project2.island.Field;
 
+import java.util.List;
+
 public class HerbivorousAnimal extends Animal {
     Field field = new Field();
 
@@ -15,11 +17,10 @@ public class HerbivorousAnimal extends Animal {
     }
 
     @Override
-    public void eat(int x, int y,BasicItem herb) {
-
-        if (herb instanceof Plant){
-            if (herb.getAmount() > 0){
-                herb.setAmount(herb.getAmount() - 5);
+    public void eat(List<BasicItem>[][] field, int i, int j, BasicItem herb) {
+        for (int k = 0; k < field[i][j].size(); k++) {
+            if (field[i][j].get(k).getName().equals(herb.getName())){
+                field[i][j].get(k).setAmount(field[i][j].get(k).getAmount() - 5);
             }
         }
     }

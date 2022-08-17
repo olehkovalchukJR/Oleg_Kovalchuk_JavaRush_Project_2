@@ -3,6 +3,7 @@ package ru.javarush.oleg_kovalchuk.project2.island;
 import ru.javarush.oleg_kovalchuk.project2.game_characters.Herb;
 import ru.javarush.oleg_kovalchuk.project2.game_characters.HerbivorousAnimal;
 import ru.javarush.oleg_kovalchuk.project2.game_characters.CarnivoreAnimal;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.Plant;
 import ru.javarush.oleg_kovalchuk.project2.main.Statistic;
 
 import java.util.List;
@@ -73,7 +74,7 @@ public class Island{
     public void fillPlants(){
         for (int i = 0; i < field.getSizeX(); i++) {
             for (int j = 0; j < field.getSizeY(); j++) {
-                field.setAnimalOnField(i,j,herbs.get(0));
+                field.setAnimalOnField(i,j,new Herb("Herb","\uD83C\uDF34",1, 200));
             }
         }
     }
@@ -106,19 +107,20 @@ public class Island{
     }
 
     public void printStatistic(){
-        for (int i = 0; i < field.getSizeX(); i++) {
-            for (int j = 0; j < field.getSizeY(); j++) {
-                statistic.currentAmount(i,j, herbs.get(0));
-            }
-        }
-//        statistic.currentAmount(0,0, herb);
+        statistic.currentAmount(field.getField());
     }
 
     public void eatHerbs(){
         for (int i = 0; i < field.getSizeX(); i++) {
             for (int j = 0; j < field.getSizeY(); j++) {
-                herbivorousAnimals.get(2).eat(i,j,herbs.get(0));
+                for (int k = 0; k < field.getField()[i][j].size(); k++) {
+                    if (field.getField()[i][j].get(k).getName().equals(herbivorousAnimals.get(2).getName())){
+                        herbivorousAnimals.get(k).eat(field.getField(),i,j,herbs.get(0));
+                        return;
+                    }
+                }
             }
         }
+//        field.getField()[0][0].get(0).setAmount(field.getField()[0][0].get(0).getAmount() - 5);
     }
 }
