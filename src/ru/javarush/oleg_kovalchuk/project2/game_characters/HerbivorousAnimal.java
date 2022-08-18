@@ -9,7 +9,6 @@ import ru.javarush.oleg_kovalchuk.project2.island.Field;
 import java.util.List;
 
 public class HerbivorousAnimal extends Animal {
-    Field field = new Field();
 
     public HerbivorousAnimal(String name, String icon, double weight,
                              int maxAnimals, int travelSpeed, double maxFullness) {
