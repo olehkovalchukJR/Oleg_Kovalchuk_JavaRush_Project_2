@@ -1,22 +1,40 @@
 package ru.javarush.oleg_kovalchuk.project2.main;
 
-import ru.javarush.oleg_kovalchuk.project2.game_characters.BasicItem;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.BasicItem;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Plant;
 
 import java.util.List;
 
+/*
+        Задача - сбор статистики
+
+        Каждый ход собирается статистика:
+
+    - сколько животных осталось на текущий момент
+    - сколько животных умерло от голода/были съедены
+    - сколько родилось новых животных
+    - разница между первым ходом и текущим по кол-ву животных
+    - тип животного которое чаще всего делает N-дейсвтие
+
+    Сбор статистики идет для всех животных + трава
+ */
+
 public class Statistic{
 
-    public void currentAmount(List<BasicItem>[][] field){
+    public void currentAnimalAmount(List<BasicItem>[][] field, BasicItem character){
+        int animalAmount = 0;
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
-                System.out.print("At position X = " + i + " and Y = " + j + " there are: ");
-                for (int k = 0; k < field[i][j].size(); k++) {
-                    System.out.print(field[i][j].get(k).getAmount() + " units of " + field[i][j].get(k).getName() + ", ");
+                String icon = character.getIcon();
+                String name = character.getName();
+                int amount = (int) field[i][j].stream()
+                        .filter(o -> o.getName().equals(character.getName()))
+                        .count();
+                if (amount > 0) {
+                    System.out.println(icon + " " + name + ", amount " + amount + ", position: (X " + i + ") (X " + j + ")");
                 }
-                System.out.println();
             }
         }
-
     }
 
 }
