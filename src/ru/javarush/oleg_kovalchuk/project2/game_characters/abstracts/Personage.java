@@ -1,11 +1,11 @@
 package ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts;
 
-public abstract class BasicItem {
+public abstract class Personage {
     private String icon;
     private double weight;
     private int maxPersonages;
 
-    public BasicItem(String icon, double weight, int maxPersonages) {
+    public Personage(String icon, double weight, int maxPersonages) {
         this.icon = icon;
         this.weight = weight;
         this.maxPersonages = maxPersonages;

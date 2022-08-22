@@ -1,10 +1,8 @@
 package ru.javarush.oleg_kovalchuk.project2.island;
 
-import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.BasicItem;
 import ru.javarush.oleg_kovalchuk.project2.game_characters.herbivorous.*;
 import ru.javarush.oleg_kovalchuk.project2.game_characters.plants.Herb;
 import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.HerbivorousAnimal;
-import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.CarnivoreAnimal;
 import ru.javarush.oleg_kovalchuk.project2.game_characters.service.PersonageFilling;
 import ru.javarush.oleg_kovalchuk.project2.main.Statistic;
 
@@ -22,12 +20,13 @@ public class Island{
 
     public Island(){
         personageFilling.fillPlants(field.getField(), herbs.get(0));
-        personageFilling.fillHerbivores(field.getField(),herbivorousAnimals.get(0));
+//        personageFilling.fillHerbivores(field.getField(),herbivorousAnimals.get(0));
+        personageFilling.fillHerbivorous(field.getField(),herbivorousAnimals);
 //        fillCarnivoreAnimals();
 //        fillHerbivorous();
 //        addAnimal();
     }
-    Horse horse = new Horse("\uD83D\uDC0E",400,20,4,60);
+//    Horse horse = new Horse("\uD83D\uDC0E",400,20,4,60);
 
     public List<Herb> herbs = List.of(new Herb("\uD83C\uDF34",1, 200));
 //    public List<CarnivoreAnimal> carnivoreAnimals = List.of(
@@ -60,26 +59,23 @@ public class Island{
     }
 
     public void moveAnimal(){
-        horse.move(field.getField(),randomDirection());
+        herbivorousAnimals.get(0).move(field.getField(),randomDirection());
     }
 
-    public void removeOneElement(){
-        field.deleteAnimalOnField(1,1,0);
+    public void eatHerbs(){
+        herbivorousAnimals.get(0).eat(field.getField(), herbs.get(0));
+//        for (int i = 0; i < field.getSizeX(); i++) {
+//            for (int j = 0; j < field.getSizeY(); j++) {
+//                    if (field.getField()[i][j].contains(herbivorousAnimals.get(0))){
+//                        herbivorousAnimals.get(0).eat(field.getField()[i][j],herbs.get(0));
+//                }
+//            }
+//        }
+//        field.getField()[9][9].remove(herbs.get(0));
     }
 
     public void printStatistic(){
         statistic.currentAnimalAmount(field.getField(), herbs.get(0));
-        statistic.currentAnimalAmount(field.getField(), horse);
-    }
-
-    public void eatHerbs(){
-        for (int i = 0; i < field.getSizeX(); i++) {
-            for (int j = 0; j < field.getSizeY(); j++) {
-                    if (field.getField()[i][j].contains(herbivorousAnimals.get(0))){
-                        herbivorousAnimals.get(0).eat(field.getField()[i][j],herbs.get(0));
-                }
-            }
-        }
-//        field.getField()[9][9].remove(herbs.get(0));
+        statistic.currentAnimalAmount(field.getField(), herbivorousAnimals.get(0));
     }
 }

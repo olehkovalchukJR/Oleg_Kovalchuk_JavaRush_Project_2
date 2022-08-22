@@ -10,10 +10,11 @@ public class Main {
 
         Island island = new Island();
         island.printIsland();
+        island.printStatistic();
 
         while (!exit){
             island.moveAnimal();
-            island.eatHerbs();
+//            island.eatHerbs();
             island.printIsland();
             island.printStatistic();
 

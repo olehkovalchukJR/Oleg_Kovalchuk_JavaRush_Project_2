@@ -1,7 +1,8 @@
 package ru.javarush.oleg_kovalchuk.project2.main;
 
-import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.BasicItem;
-import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Plant;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Animal;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Personage;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.service.PersonageFilling;
 
 import java.util.List;
 
@@ -21,8 +22,7 @@ import java.util.List;
 
 public class Statistic{
 
-    public void currentAnimalAmount(List<BasicItem>[][] field, BasicItem character){
-        int animalAmount = 0;
+    public void currentAnimalAmount(List<Personage>[][] field, Personage character){
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
                 String icon = character.getIcon();
@@ -36,5 +36,4 @@ public class Statistic{
             }
         }
     }
-
 }

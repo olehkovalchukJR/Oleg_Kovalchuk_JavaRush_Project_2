@@ -5,9 +5,6 @@ package ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts;
  */
 
 
-import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Animal;
-import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.BasicItem;
-
 import java.util.List;
 
 public abstract class CarnivoreAnimal extends Animal {
@@ -16,7 +13,17 @@ public abstract class CarnivoreAnimal extends Animal {
     }
 
     @Override
-    public void eat(List<BasicItem> field, BasicItem prey) {
+    public void eat(List<Personage>[][] field, Personage prey) {
+
+    }
+
+    @Override
+    public void getHungry(Animal animal) {
+
+    }
+
+    @Override
+    public void move(List<Personage>[][] list, String direction) {
 
     }
 }

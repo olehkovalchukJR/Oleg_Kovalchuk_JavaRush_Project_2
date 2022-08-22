@@ -1,12 +1,15 @@
 package ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts;
 
 import ru.javarush.oleg_kovalchuk.project2.interfaces.Eateble;
+import ru.javarush.oleg_kovalchuk.project2.interfaces.Movable;
+import ru.javarush.oleg_kovalchuk.project2.interfaces.Randomable;
 
-public abstract class Animal extends BasicItem implements Eateble {
-    private int travelSpeed;
+public abstract class Animal extends Personage implements Eateble, Movable, Randomable {
+    private final int travelSpeed;
     private double currentFullness;
     private double amountToMAxFullness;
-    private double maxFullness;
+    private final double maxFullness;
+    private boolean isHungry;
     private boolean isBreed;
     private boolean isAlive;
 
@@ -14,10 +17,11 @@ public abstract class Animal extends BasicItem implements Eateble {
         super(icon, weight, maxPersonages);
         this.travelSpeed = travelSpeed;
         this.maxFullness = maxFullness;
-        this.currentFullness = 0;
-        this.amountToMAxFullness = 0;
+        this.currentFullness = maxFullness;
+        this.amountToMAxFullness = maxFullness - currentFullness;
         isBreed = false;
         isAlive = true;
+        isHungry = true;
     }
 
     public int getTravelSpeed() {
@@ -58,5 +62,13 @@ public abstract class Animal extends BasicItem implements Eateble {
 
     public void setAlive(boolean alive) {
         isAlive = alive;
+    }
+
+    public boolean isHungry() {
+        return isHungry;
+    }
+
+    public void setHungry(boolean hungry) {
+        isHungry = hungry;
     }
 }

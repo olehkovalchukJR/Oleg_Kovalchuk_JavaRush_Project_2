@@ -1,24 +1,23 @@
 package ru.javarush.oleg_kovalchuk.project2.island;
 
-import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Animal;
-import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.BasicItem;
-import ru.javarush.oleg_kovalchuk.project2.interfaces.Movable;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Personage;
+import ru.javarush.oleg_kovalchuk.project2.interfaces.Randomable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Field {
+public class Field implements Randomable {
     private int sizeX = 10;
     private int sizeY = 10;
 
-    private List<BasicItem>[][] field;
+    private List<Personage>[][] field;
 
     public Field() {
         field = new List[sizeX][sizeY];
         fillArrayWithNewLists();
     }
 
-    public List<BasicItem>[][] getField() {
+    public List<Personage>[][] getField() {
         return field;
     }
 
@@ -31,7 +30,7 @@ public class Field {
     }
 
 
-    public void setAnimalOnField(int x, int y, BasicItem animal) {
+    public void setAnimalOnField(int x, int y, Personage animal) {
         field[x][y].add(animal);
     }
 
@@ -51,7 +50,7 @@ public class Field {
         System.out.println();
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
-                List<BasicItem> list = field[i][j].stream().distinct().toList();
+                List<Personage> list = field[i][j].stream().distinct().toList();
                 if (list.size() == 0) {
                     System.out.print("[  ] ");
                 } else if (list.size() == 1) {
@@ -67,9 +66,9 @@ public class Field {
     }
 
 
-    public int randomValue(int minValet, int maxValue) {
-        return (int) (Math.random() * maxValue) + minValet;
-    }
+//    public int randomValue(int minValet, int maxValue) {
+//        return (int) (Math.random() * maxValue) + minValet;
+//    }
 
 
     private void fillArrayWithNewLists() {
