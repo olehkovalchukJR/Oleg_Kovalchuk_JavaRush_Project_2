@@ -14,7 +14,7 @@ public class Main {
 
         while (!exit){
             island.moveAnimal();
-//            island.eatHerbs();
+            island.eatHerbs();
             island.printIsland();
             island.printStatistic();
 

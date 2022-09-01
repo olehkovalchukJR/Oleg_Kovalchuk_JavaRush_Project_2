@@ -10,7 +10,7 @@ public class Field implements Randomable {
     private int sizeX = 10;
     private int sizeY = 10;
 
-    private List<Personage>[][] field;
+    private static List<Personage>[][] field;
 
     public Field() {
         field = new List[sizeX][sizeY];
@@ -66,9 +66,6 @@ public class Field implements Randomable {
     }
 
 
-//    public int randomValue(int minValet, int maxValue) {
-//        return (int) (Math.random() * maxValue) + minValet;
-//    }
 
 
     private void fillArrayWithNewLists() {

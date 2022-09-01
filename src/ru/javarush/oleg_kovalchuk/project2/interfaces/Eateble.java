@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface Eateble {
     public final int MINUS_HUNGER_PERCENTAGE = 25;
-    public void eat(List<Personage>[][] field, Personage prey);
-    public void getHungry(Animal animal);
+    public void eat(List<Personage>[][] field);
+
 }

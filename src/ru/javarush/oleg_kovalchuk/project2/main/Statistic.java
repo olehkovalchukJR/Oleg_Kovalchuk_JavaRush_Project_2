@@ -1,8 +1,9 @@
 package ru.javarush.oleg_kovalchuk.project2.main;
 
-import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Animal;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Herbivorous;
 import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Personage;
-import ru.javarush.oleg_kovalchuk.project2.game_characters.service.PersonageFilling;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.abstracts.Plant;
+import ru.javarush.oleg_kovalchuk.project2.game_characters.plants.Herb;
 
 import java.util.List;
 
@@ -34,6 +35,50 @@ public class Statistic{
                     System.out.println(icon + " " + name + ", amount " + amount + ", position: (X " + i + ") (X " + j + ")");
                 }
             }
+        }
+    }
+    public void createdPlantsAmount(List<Herb> animal){
+        System.out.println();
+        System.out.println("Created Plants:");
+        for (int i = 0; i < animal.size(); i++) {
+            System.out.println(animal.get(i).getIcon() + animal.get(i).getName() + ", created "
+                    + animal.get(i).getCreatedPersonagesAmount());
+        }
+    }
+    public void diedPlantsAmount(List<Herb> animal){
+        System.out.println();
+        System.out.println("Died Plants:");
+        for (int i = 0; i < animal.size(); i++) {
+            System.out.println(animal.get(i).getIcon() + animal.get(i).getName() + ", died "
+                    + animal.get(i).getDiedPersonagesAmount());
+        }
+    }
+
+    public void createdPersonageAmount(List<Herbivorous> animal){
+        System.out.println();
+        System.out.println("Created Herbivorous:");
+        for (int i = 0; i < animal.size(); i++) {
+            System.out.println(animal.get(i).getIcon() + animal.get(i).getName() + ", created "
+                    + animal.get(i).getCreatedPersonagesAmount());
+        }
+    }
+
+    public void diedPersonageAmount(List<Herbivorous> animal){
+        System.out.println();
+        System.out.println("Died Herbivorous:");
+        for (int i = 0; i < animal.size(); i++) {
+            System.out.println(animal.get(i).getIcon() + animal.get(i).getName() + ", died "
+                    + animal.get(i).getDiedPersonagesAmount());
+        }
+    }
+
+    public void livingPersonageAmount(List<Herbivorous> animal){
+        System.out.println();
+        System.out.println("Living Herbivorous:");
+        for (int i = 0; i < animal.size(); i++) {
+            int result = animal.get(i).getCreatedPersonagesAmount() - animal.get(i).getDiedPersonagesAmount();
+            System.out.println(animal.get(i).getIcon() + animal.get(i).getName() + ", living "
+                    + result);
         }
     }
 }
